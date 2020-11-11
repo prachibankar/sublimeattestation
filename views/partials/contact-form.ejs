@@ -1,0 +1,84 @@
+<script type="text/javascript">
+    function submitEmailForm(form) {
+        var obj = new XMLHttpRequest();
+        obj.onreadystatechange = function() {
+            if (obj.readyState == 4) {
+                if (obj.status == 200) {
+                    var res = JSON.parse(obj.responseText);
+                    $('.contact-form').find('.success-msg').show().delay(5000).fadeOut();
+                    form.reset();
+                } else {
+                    $('.contact-form').find('.error-msg').show().delay(5000).fadeOut();
+                }
+            }
+        };
+        obj.open("post", form.action, true);
+        obj.setRequestHeader("Content-Type", "application/json"); // NOTICE: "application/json"
+        obj.send(JSON.stringify({
+            name: form.name.value,
+            email: form.email.value,
+            message: form.message.value
+        }));
+        return false;
+    }
+</script>
+
+
+<div class="contact-form mb60">
+    <div class=" ">
+        <div class="col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
+            <div class="mb60  section-title text-center  ">
+                <!-- section title start-->
+                <h1>Get In Touch</h1>
+                <p>Reach out to us &amp; we will respond as soon as we can.</p>
+            </div>
+        </div>
+        <div class="row">
+            <form action="/ajax/email" class="contact-us" method="post" onsubmit="return submitEmailForm(this);">
+                <div class=" ">
+                    <!-- Text input-->
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="sr-only control-label" for="name">name<span class=" "> </span></label>
+                            <input id="name" name="name" type="text" placeholder="Name" class="form-control input-md" required>
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="sr-only control-label" for="email">Email<span class=" "> </span></label>
+                            <input id="email" name="email" type="email" placeholder="Email" class="form-control input-md" required>
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="sr-only control-label" for="phone">Phone<span class=" "> </span></label>
+                            <input id="phone" name="phone" type="text" placeholder="Phone" class="form-control input-md" required>
+                        </div>
+                    </div>
+                    <!-- Select Basic -->
+                    <div class="col-md-12 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label" for="message"> </label>
+                            <textarea class="form-control" id="message" rows="7" name="message" placeholder="Message"></textarea>
+                        </div>
+                    </div>
+                    <!-- Button -->
+                    <div class="col-md-12 col-xs-12">
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="mb60 section-title text-center success-msg" style="display: none;">
+            <h4 class="text text-success">Form Submit Successfully, we will respond as soon as we can.</h4>
+        </div>
+
+        <div class="mb60 section-title text-center error-msg" style="display: none;">
+            <h4 class="text text-danger">Unable to Submit your form</h4>
+        </div>
+    </div>
+    <!-- /.section title start-->
+</div>

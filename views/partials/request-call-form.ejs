@@ -1,0 +1,80 @@
+<script type="text/javascript">
+    function submitRequestForm(form) {
+        var obj = new XMLHttpRequest();
+        obj.onreadystatechange = function() {
+            if (obj.readyState == 4) {
+                if (obj.status == 200) {
+                    var res = JSON.parse(obj.responseText);
+                    $('.contact-form').find('.success-msg').show().delay(5000).fadeOut();
+                    form.reset();
+                } else {
+                    $('.contact-form').find('.error-msg').show().delay(5000).fadeOut();
+                }
+            }
+        };
+        obj.open("post", form.action, true);
+        obj.setRequestHeader("Content-Type", "application/json"); // NOTICE: "application/json"
+        obj.send(JSON.stringify({
+            name: form.name.value,
+            email: form.email.value
+        }));
+        return false;
+    }
+</script>
+
+<div class="section-scroll contact-form" id="section-apply">
+    <div class="bg-light pinside60">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="section-title mb60 text-center">
+                    <h1>Request for a Call</h1>
+                    <p>All you need to do is provide your details below application form.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form action="/ajax/email" class="contact-us" method="post" onsubmit="return submitRequestForm(this);">
+                    <fieldset>
+                        <!-- Text input-->
+                        <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                            <label class="control-label" for="name">Name</label>
+                            <div class="">
+                                <input id="name" name="name" type="text" placeholder="Name" class="form-control input-md" required>
+                                <span class="help-block"> </span> </div>
+                        </div>
+                        <!-- Text input-->
+                        <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                            <label class=" control-label" for="email">E-Mail</label>
+                            <div class="">
+                                <input id="email" name="email" type="text" placeholder="E-mail" class="form-control input-md">
+                            </div>
+                        </div>
+                        <!-- Text input-->
+                        <div class="form-group col-md-4 col-sm-12 col-xs-12">
+                            <label class="control-label" for="phone">Phone</label>
+                            <div class="">
+                                <input id="phone" name="phone" type="text" placeholder="Phone" class="form-control">
+                            </div>
+                        </div>
+
+                        <!-- Button -->
+                        <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                            <div class="">
+                                <button id="Submit" name="Submit" class="btn btn-primary btn-block">Submit</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="mb60 section-title text-center success-msg" style="display: none;">
+                <h4 class="text text-success">Form Submit Successfully, we will respond as soon as we can.</h4>
+            </div>
+
+            <div class="mb60 section-title text-center error-msg" style="display: none;">
+                <h4 class="text text-danger">Unable to Submit your form</h4>
+            </div>
+        </div>
+    </div>
+</div>

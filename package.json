@@ -1,0 +1,25 @@
+{
+    "name": "sublime-attestation",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sandeshbodake/sublime-attestation.git"
+    },
+    "author": "sandeshbodake121@gmail.com",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/sandeshbodake/sublime-attestation/issues"
+    },
+    "homepage": "https://github.com/sandeshbodake/sublime-attestation#readme",
+    "dependencies": {
+        "ejs": "^3.1.5",
+        "express": "^4.17.1",
+        "nodemailer": "^6.4.15"
+    }
+}
