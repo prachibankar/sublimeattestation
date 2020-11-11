@@ -1,0 +1,34 @@
+@charset "utf-8";
+/* CSS Document */
+
+#navigation ul li a active { color:red;}
+#navigation ul li.active > a { color: #06F; }
+#navigation > ul > li:hover > a { color: #090; }
+#navigation > ul > li:hover > a { color: #090; }
+.txtcolor { color:#778191;}
+.txtcolor:hover { color:#090;}
+
+.btn-link { color: #15549a; font-weight: 500; padding-bottom: 4px; border-bottom: 2px solid #15549a; display: inline-block; }
+.btn-link:hover { color: #090; font-weight: 500; padding-bottom: 4px; border-bottom: 2px solid #090; text-decoration: none; }
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#25d366;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+  font-size:30px;
+	box-shadow: 2px 2px 3px #999;
+  z-index:100;
+}
+
+.my-float{
+	margin-top:16px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
